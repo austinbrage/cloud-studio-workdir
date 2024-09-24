@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sudo su
+yum update -y
+yum install yum-plugin-copr -y
+yum copr enable @caddy/caddy -y
+yum install caddy -y
+printf ":80\nrespond \"Hello from $HOSTNAME\"" > /etc/caddy/Caddyfile
+caddy start --config /etc/caddy/Caddyfile
