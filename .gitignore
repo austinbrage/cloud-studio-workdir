@@ -29,3 +29,6 @@ terraform.rc
 # Ignore OS generated files
 .DS_Store
 Thumbs.db
+
+# Projects must be on its own git repos
+**/projects
