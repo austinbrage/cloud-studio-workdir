@@ -1,0 +1,31 @@
+# Terraform specific files
+.terraform/
+*.tfstate
+*.tfstate.backup
+crash.log
+# *.tfvars
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# Sensitive data files
+*.pem
+*.key
+*.env
+.env.*
+*.p12
+*.jks
+*.json
+
+# Ignore IDE files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignore OS generated files
+.DS_Store
+Thumbs.db
