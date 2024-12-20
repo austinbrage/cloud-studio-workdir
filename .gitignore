@@ -1,34 +1,62 @@
-# Terraform specific files
+# === Terraform Files ===
+# Ignore Terraform workspace directory
 .terraform/
-*.tfstate
-*.tfstate.backup
-crash.log
-# *.tfvars
+
+# Ignore Terraform state files
+terraform.tfstate
+terraform.tfstate.*
+
+# Ignore Terraform provider lock file
+.terraform.lock.hcl
+
+# Ignore Terraform override files
 override.tf
 override.tf.json
 *_override.tf
 *_override.tf.json
-.terraformrc
-terraform.rc
 
-# Sensitive data files
+# Ignore Terraform cache directory (if applicable)
+.terraform-cache/
+
+# Ignore Terraform logs
+crash.log
+*.log
+
+# === Sensitive Files ===
+# Ignore private keys, certificates, and sensitive environment files
 *.pem
 *.key
-*.env
-.env.*
 *.p12
 *.jks
+.env
+.env.*
+
+# Ignore JSON files containing secrets
 *.json
 
-# Ignore IDE files
+# === Editor and IDE Files ===
+# Ignore IntelliJ IDEA project files
 .idea/
-.vscode/
-*.sublime-workspace
-*.sublime-project
 
-# Ignore OS generated files
+# Ignore Visual Studio Code settings
+.vscode/
+
+# Ignore Sublime Text project and workspace files
+*.sublime-project
+*.sublime-workspace
+
+# Ignore temporary editor files
+*~
+*.swp
+*.swo
+
+# === System-Specific Files ===
+# Ignore macOS Finder metadata
 .DS_Store
+
+# Ignore Windows thumbnail cache
 Thumbs.db
 
-# Projects must be on its own git repos
+# === Project Organization ===
+# Ensure projects are isolated into their own repositories
 **/projects
