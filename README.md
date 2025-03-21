@@ -1,6 +1,6 @@
 # Cloud Studio **[Workdir]**
 
-This repository contains the base files for the **[Cloud Studio](https://google.com/)** application
+This repository contains the base files for the **[Cloud Studio](https://cloud-studio-docs.pages.dev/)** application
 
 A workspace where you can store, edit, and deploy your Terraform scripts across different cloud providers.
 
