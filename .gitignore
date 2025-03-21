@@ -6,6 +6,10 @@
 terraform.tfstate
 terraform.tfstate.*
 
+# Ignore Terraform plan files
+tfplan.binary
+plan.json
+
 # Ignore Terraform provider lock file
 .terraform.lock.hcl
 
