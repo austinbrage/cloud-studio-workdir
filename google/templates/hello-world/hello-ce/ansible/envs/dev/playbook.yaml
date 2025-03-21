@@ -1,0 +1,40 @@
+# Hello world STAGE server!
+
+- name: Prepare environment
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    
+    - name: Upgrade apt packages
+      apt:
+        upgrade: yes
+  
+    
+# [ Role executions ]
+    
+- name: Deploy FRONTEND application
+  hosts: servers
+  become: yes
+  vars:
+    app_name: "my-project"
+    
+  roles:
+    - role: ../../roles/nodejs
+    
+    - role: ../../roles/app
+      vars:     
+        app_repo_url: "https://github.com/austinbrage/portfolio.git"
+        app_repo_branch: "main"
+        run_npm_install: true
+        run_npm_build: true
+        
+    - role: ../../roles/nginx
+      vars: 
+        subdomain: "www"
+        server_domain: "mydomain.com"
+      
