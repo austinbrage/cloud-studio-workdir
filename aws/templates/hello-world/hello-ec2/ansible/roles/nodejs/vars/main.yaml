@@ -1,0 +1,4 @@
+---
+
+nodejs_version: "22"
+nodejs_repo_url: "https://deb.nodesource.com/setup_{{ nodejs_version }}.x"

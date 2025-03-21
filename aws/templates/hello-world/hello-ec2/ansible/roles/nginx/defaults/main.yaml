@@ -1,0 +1,6 @@
+---
+
+app_name: "your-app"
+
+subdomain: "www"
+server_domain: "yourdomain.com"

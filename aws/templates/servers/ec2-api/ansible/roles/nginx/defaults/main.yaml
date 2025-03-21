@@ -1,0 +1,7 @@
+---
+
+app_port: 3001
+app_name: "your-app"
+
+subdomain: "www"
+server_domain: "yourdomain.com"

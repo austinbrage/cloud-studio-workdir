@@ -1,0 +1,56 @@
+---
+
+- name: Ensure git is installed
+  apt:
+    name: git
+    state: present
+
+- name: Install pm2 globally
+  npm:
+    name: pm2
+    global: yes
+
+- name: Clone the application repository
+  git:
+    repo: "{{ app_repo_url }}"
+    dest: "/var/www/{{ app_name }}"
+    version: "{{ app_repo_branch }}"
+    force: yes
+
+- name: Install application dependencies (if enabled)
+  shell: pnpm install --prod
+  args:
+    chdir: "/var/www/{{ app_name }}"
+  when: run_npm_install | bool
+
+- name: Build application (if enabled)
+  shell: pnpm build
+  args:
+    chdir: "/var/www/{{ app_name }}"
+  when: run_npm_build | bool
+
+- name: Read package.json to get main entry point
+  slurp:
+    src: "/var/www/{{ app_name }}/package.json"
+  register: package_json_content
+
+- name: Set main script from package.json
+  set_fact:
+    main_script: "{{ (package_json_content['content'] | b64decode | from_json).main }}"
+
+- name: Create ecosystem.config.cjs
+  template:
+    src: "templates/pm2.config.j2"
+    dest: "/var/www/{{ app_name }}/ecosystem.config.cjs"
+    mode: "0600"
+  no_log: true
+
+- name: Start or reload application
+  shell: pm2 startOrReload ecosystem.config.cjs
+  args:
+    chdir: "/var/www/{{ app_name }}"
+  become_flags: "-E"
+  notify:
+    - Save PM2 process list
+    - Configure PM2 startup on boot
+    

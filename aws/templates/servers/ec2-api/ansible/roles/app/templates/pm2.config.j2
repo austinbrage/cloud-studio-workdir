@@ -1,0 +1,16 @@
+module.exports = {
+  apps: [
+    {
+      name: "{{ app_name }}",
+      script: "{{ main_script }}",
+      env: {
+        NODE_ENV: "production",
+        PROD_PORT: {{ app_port }},
+        PROD_DB_HOST: "{{ db_host }}",
+        PROD_DB_USER: "{{ db_user }}",
+        PROD_DB_PASSWORD: "{{ db_password }}",
+        PROD_DB_DATABASE: "{{ db_database }}"
+      }
+    }
+  ]
+}

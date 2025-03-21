@@ -1,0 +1,63 @@
+---
+
+- name: Check if required version of Node.js is already installed
+  shell: node -v
+  register: node_version_check
+  changed_when: false
+  ignore_errors: yes
+  
+- name: Remove existing Node.js installation (if version mismatch)
+  block:
+    - name: Uninstall Node.js and related packages
+      apt:
+        name:
+          - nodejs
+          - npm
+        state: absent
+        purge: yes
+        autoremove: yes
+
+    - name: Remove any remaining Node.js files or directories
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - /usr/local/bin/node
+        - /usr/local/bin/npm
+        - /usr/local/lib/node_modules
+        - /etc/apt/sources.list.d/nodesource.list
+  when: node_version_check.rc == 0 and not node_version_check.stdout.startswith('v' + nodejs_version + '.')
+  
+- name: Install Node.js (if not already installed or version is incorrect)
+  block: 
+    - name: Ensure curl is installed
+      apt:
+        name: curl
+        state: present
+        
+    - name: Add NodeSource repository for Node.js {{ nodejs_version }}.x
+      shell: |
+        curl -fsSL {{ nodejs_repo_url }} | sudo -E bash -
+      args:
+        executable: /bin/bash
+        
+    - name: Ensure Node.js {{ nodejs_version }}.x is installed
+      apt:
+        name: nodejs
+        state: present
+        update_cache: yes
+  when: node_version_check.rc != 0 or not node_version_check.stdout.startswith('v' + nodejs_version + '.')
+        
+- name: Install pnpm
+  shell: npm install -g pnpm@latest-10
+  args:
+    executable: /bin/bash
+
+- name: Verify Node.js, npm, and pnpm versions
+  shell: "echo \"Node.js version: $(node -v) | npm version: $(npm -v) | pnpm version: $(pnpm -v)\""
+  register: versions_info
+  changed_when: false
+
+- name: Debug Node.js, npm and pnpm versions
+  debug:
+    msg: "{{ versions_info.stdout }}"
