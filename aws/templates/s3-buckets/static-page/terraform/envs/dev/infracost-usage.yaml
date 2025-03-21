@@ -1,0 +1,24 @@
+version: 0.1
+
+resource_usage:
+# Current values for 5,000–10,000 visits/per month
+
+  aws_s3_bucket:
+    object_tags: 1000
+    standard:
+      storage_gb: 2
+      monthly_tier_1_requests: 10000
+      monthly_tier_2_requests: 50000
+      monthly_select_data_scanned_gb: 0
+      monthly_select_data_returned_gb: 0
+
+  aws_cloudfront_distribution:
+    monthly_data_transfer_to_internet_gb:
+      us: 10
+      europe: 5
+      south_africa: 0
+      south_america: 0
+      japan: 0
+      australia: 0
+      asia_pacific: 0
+      india: 0

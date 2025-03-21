@@ -1,0 +1,12 @@
+version: 0.1
+
+resource_usage:
+
+  aws_s3_bucket:
+    object_tags: 1000
+    standard:
+      storage_gb: 1
+      monthly_tier_1_requests: 50000
+      monthly_tier_2_requests: 500000
+      monthly_select_data_scanned_gb: 50
+      monthly_select_data_returned_gb: 150

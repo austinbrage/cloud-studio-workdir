@@ -1,0 +1,27 @@
+# Hello world DEV server!
+
+- name: Prepare environment
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+    
+    - name: Upgrade apt packages
+      apt:
+        upgrade: yes
+  
+    
+# [ Role executions ]
+    
+- name: Deploy application
+  hosts: servers
+  become: yes
+
+  tasks: 
+    - name: Testimonial task
+      ansible.builtin.debug:
+        msg: "Proceeding to run deployment roles" 
