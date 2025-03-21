@@ -1,0 +1,5 @@
+---
+
+- name: Add a placeholder task
+  ansible.builtin.debug:
+    msg: "This is a placeholder task. Replace it with your own logic."
