@@ -1,0 +1,47 @@
+# Ignore Terraform workspace directory
+.terraform/
+
+# Ignore Node modules directories 
+node_modules/
+
+# Ignore Artifacts directories 
+artifacts/
+
+# Ignore Output and Reports directories 
+output/
+reports/
+
+# Ignore Infracost configuration directory
+.infracost
+
+# Ignore Infracost json files
+infracost-base.json
+infracost-diff.json
+
+# Ignore Terraform state files
+terraform.tfstate
+terraform.tfstate.*
+
+# Ignore Terraform provider lock file
+.terraform.lock.hcl
+
+# Ignore sensitive variable files
+*.tfvars
+
+# Ignore Terraform cache directory
+.terraform-cache/
+
+# Ignore log files (if used)
+*.log
+
+# Ignore temporary editor files
+*~
+*.swp
+*.swo
+
+# Ignore system-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore local environment configuration files
+.env

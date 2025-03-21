@@ -1,0 +1,7 @@
+version: 0.1
+
+resource_usage:
+
+  azurerm_linux_virtual_machine:
+    os_disk:
+      monthly_disk_operations: 20500000

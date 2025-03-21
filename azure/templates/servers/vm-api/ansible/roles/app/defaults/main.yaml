@@ -1,0 +1,10 @@
+---
+
+app_repo_url: "https://github.com/your-repo/your-app.git"
+app_repo_branch: "main"
+
+app_name: "my-app"
+app_port: 3001
+
+run_npm_install: true
+run_npm_build: true

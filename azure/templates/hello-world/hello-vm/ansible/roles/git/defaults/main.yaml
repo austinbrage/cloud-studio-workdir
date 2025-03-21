@@ -1,0 +1,8 @@
+---
+
+app_repo_url: "https://github.com/your-repo/your-app.git"
+app_repo_branch: "main"
+app_name: "my-app"
+
+run_npm_install: true
+run_npm_build: true

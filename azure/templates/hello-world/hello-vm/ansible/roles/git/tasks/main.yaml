@@ -1,0 +1,26 @@
+---
+
+- name: Ensure git is installed
+  apt:
+    name: git
+    state: present
+
+- name: Clone the application repository
+  git:
+    repo: "{{ app_repo_url }}"
+    dest: "/var/www/{{ app_name }}"
+    version: "{{ app_repo_branch }}"
+    force: yes
+
+- name: Install application dependencies (if enabled)
+  npm:
+    path: "/var/www/{{ app_name }}"
+    state: present
+  when: run_npm_install | bool
+
+- name: Build application (if enabled)
+  command: npm run build
+  args:
+    chdir: "/var/www/{{ app_name }}"
+  when: run_npm_build | bool
+  
