@@ -1,7 +1,7 @@
 # To view available regions and zones in GCP, visit:
 # https://holori.com/list-of-gcp-regions
 
-google_project = "gen-lang-client-0380628294"
+google_project = "my-project-id"
 
 google_region = "us-central1"
 google_zones  = ["us-central1-a", "us-central1-b", "us-central1-c", "us-central1-f"]
